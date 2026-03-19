@@ -68,11 +68,43 @@ emcs_total = int(f["emergency_cs_count"].sum())
 cs_rate = cs_total / max(1, births)
 emcs_rate = emcs_total / max(1, births)
 
-k1, k2, k3 = st.columns(3)
-k1.metric("Births (total)", births)
-k2.metric("C-section rate", f"{cs_rate:.1%}")
-k3.metric("Emergency C-section rate", f"{emcs_rate:.1%}")
+# Headline totals for selected period
+births = int(f["births_total"].sum())
+elcs_total = int(f["elective_cs_count"].sum())
+emcs_total = int(f["emergency_cs_count"].sum())
+nvd_total = int(f["nvd_count"].sum())
 
+intended_vaginal_total = int((f["births_total"] - f["elective_cs_count"]).sum())
+
+intrapartum_cs_rate_total = (
+    emcs_total / max(1, intended_vaginal_total)
+)
+
+vaginal_success_rate_total = (
+    nvd_total / max(1, intended_vaginal_total)
+)
+
+elective_share_total = (
+    elcs_total / max(1, births)
+)
+
+nicu_total = int(f["nicu_admissions_total"].sum())
+nicu_term_total = int(f["nicu_admissions_term"].sum())
+nicu_rate_total = nicu_total / max(1, births)
+
+st.subheader("Headline outcomes for intended vaginal births")
+k1, k2, k3, k4, k5, k6 = st.columns(6)
+
+k1.metric("Births", f"{births}")
+k2.metric("Elective CS share", f"{elective_share_total:.1%}")
+k3.metric("Intended vaginal births", f"{intended_vaginal_total}")
+k4.metric("Intrapartum CS rate", f"{intrapartum_cs_rate_total:.1%}")
+k5.metric("Vaginal success rate", f"{vaginal_success_rate_total:.1%}")
+k6.metric("NICU rate", f"{nicu_rate_total:.1%}")
+
+st.caption("Intended vaginal births equals total births minus elective caesareans")
+st.caption("Intrapartum CS rate equals emergency caesareans divided by intended vaginal births")
+``
 st.divider()
 
 c1, c2, c3 = st.columns(3)
