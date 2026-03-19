@@ -19,14 +19,11 @@ def load_data():
         encoding="utf-8-sig",
         on_bad_lines="skip"
     )
-
     expected_cols = [
-        "month",
-        "births_total",
-        "nvd_count",
-        "elective_cs_count",
-        "emergency_cs_count"
-    ]
+    "month",
+    "births_total",
+    "nvd_count",
+    "elective_cs_count
 
     df = df[expected_cols]
 
