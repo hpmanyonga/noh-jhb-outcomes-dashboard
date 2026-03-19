@@ -209,4 +209,19 @@ mix_chart = alt.Chart(mix).mark_bar().encode(
 
 st.subheader("Mode of delivery mix (counts)")
 st.altair_chart(mix_chart, use_container_width=True)
-``
+st.subheader("Monthly intended vaginal metrics table")
+t = f[[
+    "month",
+    "births_total",
+    "elective_cs_count",
+    "intended_vaginal_den",
+    "nvd_count",
+    "emergency_cs_count",
+    "intrapartum_cs_rate",
+    "vaginal_success_rate",
+    "nicu_admissions_total",
+    "nicu_admissions_term"
+]].copy()
+
+t["month"] = t["month"].dt.strftime("%Y-%m")
+st.dataframe(t, use_container_width=True)
