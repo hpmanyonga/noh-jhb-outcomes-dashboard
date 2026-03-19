@@ -52,7 +52,15 @@ start, end = st.sidebar.slider(
 )
 
 f = df[(df["month"] >= start) & (df["month"] <= end)].copy()
+# Intended mode of delivery metrics
+f["intended_vaginal_den"] = (f["births_total"] - f["elective_cs_count"]).clip(lower=0)
 
+f["intrapartum_cs_rate"] = (
+    f["emergency_cs_count"] / f["intended_vaginal_den"].replace(0, pd.NA)
+)
+
+f["vaginal_success_rate"] = (
+    f["nvd_count"] / f["intended_vaginal_den"].replace(0, pd.NA
 births = int(f["births_total"].sum())
 cs_total = int((f["elective_cs_count"] + f["emergency_cs_count"]).sum())
 emcs_total = int(f["emergency_cs_count"].sum())
