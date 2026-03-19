@@ -101,6 +101,39 @@ k3.metric("Intended vaginal births", f"{intended_vaginal_total}")
 k4.metric("Intrapartum CS rate", f"{intrapartum_cs_rate_total:.1%}")
 k5.metric("Vaginal success rate", f"{vaginal_success_rate_total:.1%}")
 k6.metric("NICU rate", f"{nicu_rate_total:.1%}")
+st.divider()
+
+st.subheader("Intended vaginal pathway performance over time")
+
+cA, cB = st.columns(2)
+
+intra_chart = alt.Chart(f).mark_line(point=True).encode(
+    x=alt.X("month:T", title="Baby DOB Period"),
+    y=alt.Y("intrapartum_cs_rate:Q", title="Intrapartum CS rate", axis=alt.Axis(format="%")),
+    tooltip=[
+        "month:T",
+        alt.Tooltip("intrapartum_cs_rate:Q", format=".1%"),
+        alt.Tooltip("intended_vaginal_den:Q", title="Intended vaginal births"),
+        alt.Tooltip("emergency_cs_count:Q", title="Emergency CS"),
+        alt.Tooltip("elective_cs_count:Q", title="Elective CS"),
+        alt.Tooltip("births_total:Q", title="Births")
+    ]
+).properties(height=320)
+
+success_chart = alt.Chart(f).mark_line(point=True).encode(
+    x=alt.X("month:T", title="Baby DOB Period"),
+    y=alt.Y("vaginal_success_rate:Q", title="Vaginal success rate", axis=alt.Axis(format="%")),
+    tooltip=[
+        "month:T",
+        alt.Tooltip("vaginal_success_rate:Q", format=".1%"),
+        alt.Tooltip("intended_vaginal_den:Q", title="Intended vaginal births"),
+        alt.Tooltip("nvd_count:Q", title="NVD"),
+        alt.Tooltip("births_total:Q", title="Births")
+    ]
+).properties(height=320)
+
+cA.altair_chart(intra_chart, use_container_width=True)
+cB.altair_chart(success_chart, use_container_width=True)
 
 st.caption("Intended vaginal births equals total births minus elective caesareans")
 st.caption("Intrapartum CS rate equals emergency caesareans divided by intended vaginal births")
