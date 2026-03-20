@@ -1,2 +1,4 @@
-nano .gitignore
-``
+__pycache__/
+*.pyc
+.env
+.DS_Store
