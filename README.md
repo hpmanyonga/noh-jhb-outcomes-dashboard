@@ -1,48 +1,56 @@
-month,births_total,nvd_count,elective_cs_count,emergency_cs_count,nicu_admissions_total,nicu_admissions_term
-2022-06-01,2,1,0,1,0,0
-2022-07-01,1,0,1,0,0,0
-2022-08-01,3,1,2,0,0,0
-2022-09-01,4,2,1,1,0,0
-2022-10-01,4,2,0,2,0,0
-2022-11-01,7,4,0,3,1,0
-2022-12-01,4,3,1,0,0,0
-2023-01-01,2,1,1,0,0,0
-2023-02-01,6,2,2,2,2,2
-2023-03-01,8,6,0,2,0,0
-2023-04-01,4,3,1,0,0,0
-2023-05-01,6,4,1,1,0,0
-2023-06-01,5,2,1,2,0,0
-2023-07-01,11,6,3,2,1,1
-2023-08-01,11,6,3,2,2,2
-2023-09-01,24,10,8,6,3,2
-2023-10-01,12,3,3,6,2,2
-2023-11-01,3,1,1,1,0,0
-2023-12-01,20,10,8,2,6,5
-2024-01-01,12,4,4,4,1,1
-2024-02-01,8,4,1,3,2,1
-2024-03-01,8,0,3,5,3,3
-2024-04-01,5,1,1,3,1,1
-2024-05-01,7,3,1,3,2,1
-2024-06-01,10,4,2,4,2,1
-2024-07-01,12,3,5,4,6,5
-2024-08-01,10,5,2,3,2,2
-2024-09-01,4,1,1,2,0,0
-2024-10-01,5,1,2,2,2,2
-2024-11-01,6,4,0,2,2,0
-2024-12-01,9,2,6,1,2,2
-2025-01-01,5,2,1,2,1,1
-2025-02-01,7,1,2,4,6,4
-2025-03-01,10,4,4,2,2,2
-2025-04-01,10,5,1,4,3,3
-2025-05-01,7,4,1,2,1,1
-2025-06-01,5,2,1,2,2,2
-2025-07-01,12,2,5,5,7,5
-2025-08-01,17,4,3,10,8,7
-2025-09-01,12,1,4,7,7,3
-2025-10-01,16,3,6,7,6,5
-2025-11-01,7,0,3,4,2,2
-2025-12-01,13,0,4,9,9,9
-2026-01-01,13,3,6,4,6,5
-2026-02-01,9,3,1,5,4,3
-2026-03-01,10,4,3,3,5,5
-``
+NOH Johannesburg Clinical Outcomes Dashboard
+
+This repository contains the Streamlit dashboard and narrative used to present
+monthly maternity outcomes for the Network One Health (NOH) Johannesburg centre
+at Busamed Modderfontein.
+
+The dashboard is designed for clinical governance, funder engagement, and
+programme improvement. It provides transparent visibility of outcomes without
+smoothing, selective exclusion, or performance marketing.
+
+Scope
+- Single centre: NOH Johannesburg (Busamed Modderfontein)
+- Reporting unit: Monthly, baby date of birth
+- Period covered: June 2022 to March 2026
+- Data type: De-identified, aggregated clinical outcomes
+
+What the dashboard shows
+- System-level trends in caesarean section (CS) and NICU admission rates
+- Three-month rolling averages used for interpretation only
+- Explicit markers for system transition and operational stress periods
+- Intended vaginal pathway metrics, separating planned surgical births
+  from intrapartum conversion
+
+Key interpretation principles
+- Elective caesarean sections are treated as planned surgical births and
+  removed from the denominator when assessing intrapartum performance
+- Emergency caesarean section is treated as a quality-sensitive indicator
+- NICU outcomes are interpreted alongside delivery mode rather than in isolation
+- Low-volume months are retained to preserve visibility of system stress
+
+Narrative alignment
+The dashboard narrative is locked and governed by a clinical outcomes narrative
+document. All captions, markers, and interpretations in the app are aligned
+verbatim to that source of truth.
+
+See:
+docs/NOH_JHB_Maternity_Outcomes_Narrative.md
+
+Repository structure
+- streamlit_app.py          Streamlit application
+- data/                     De-identified monthly outcomes dataset
+- docs/                     Locked narrative and governance documents
+- requirements.txt          Python dependencies
+
+Running the app locally
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+
+Deployment
+This app is designed to be deployed via Streamlit Cloud using the main branch
+and streamlit_app.py as the entry point.
+
+Governance note
+This dashboard is an active governance tool. It is used to support audit,
+learning, and improvement discussions and does not make causal claims or
+individual clinician attribution.
