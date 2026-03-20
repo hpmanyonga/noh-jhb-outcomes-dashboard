@@ -1,2 +1,2 @@
-git status
+nano .gitignore
 ``
