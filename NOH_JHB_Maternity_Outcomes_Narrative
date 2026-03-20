@@ -1,0 +1,157 @@
+# NOH Clinical Outcomes Dashboard – Narrative & Interpretation Pack
+
+## Purpose
+This document consolidates the full analytical narrative, quantitative anchors, and interpretation logic for the Network One Health (NOH) clinical outcomes dashboard at Busamed Modderfontein. It is designed to integrate seamlessly into an existing dashboard, funder pack, or governance narrative without rework.
+
+The focus is on **monthly trends in caesarean section (CS) rates and NICU admissions**, with explicit attention to **system-level drivers**, particularly **intrapartum workforce conditions and ward-level change management**.
+
+---
+
+## Data Source
+All quantitative analysis is derived from:
+
+**noh-clinical outcomes.xlsx**
+
+Fields used:
+- Month
+- Total births
+- Normal vaginal deliveries (NVD)
+- Elective caesarean sections (ELCS)
+- Emergency caesarean sections (EMCS)
+- NICU admissions (total)
+- NICU admissions (term)
+
+Derived metrics:
+- CS count = ELCS + EMCS
+- CS% = (ELCS + EMCS) / total births
+- NICU% = NICU_total / total births
+
+Monthly values are used directly; **3‑month trailing rolling averages** are applied for interpretation.
+
+---
+
+## Visual Design Principle (Dashboard)
+- **Solid lines**: Monthly CS% and NICU%
+- **Dashed lines**: 3‑month rolling averages (CS% and NICU%)
+- **Vertical markers**: System change points (see below)
+- Rationale: Monthly volumes are small; rolling averages reveal true structural shifts rather than noise.
+
+---
+
+## High‑Level Trend Summary
+
+### Early period (programme inception → mid‑2023)
+- Outcomes were comparatively stable.
+- Aggregate CS rate (Jun 2022 – Jun 2023): **~44.6%**
+- Aggregate NICU rate: **~5.4%**
+
+This period aligns with a phase where **independent / private midwives were used for intrapartum support**, due to ward capacity constraints.
+
+---
+
+### Transition period (mid‑2023 → end‑2023)
+- Step‑change begins.
+- Aggregate CS rate (Jul 2023 – Dec 2023): **~55.6%**
+- Aggregate NICU rate: **~17.3%**
+
+This coincides with transition toward **hospital ward midwives providing intrapartum care**, making outcomes more sensitive to ward conditions.
+
+---
+
+### Sustained elevated period (2024 onward)
+- Structural elevation is now clear.
+
+**Full‑year 2024 summary:**
+- Births: 96
+- CS rate: **~66.7%**
+- NICU rate: **~26.0%**
+
+Using a 3‑month rolling average, **sustained CS elevation (≥60%) begins in March 2024 and persists thereafter**.
+
+This marks the point at which the change is no longer episodic but systemic.
+
+---
+
+## Key Quantitative Anchors (for chart callouts)
+
+- **Sustained CS elevation begins**: March 2024  
+  (3‑month rolling average CS% ≥ 60% for ≥6 consecutive months)
+
+- **Peak CS month (2024)**:  
+  March 2024 – 100% CS (0 NVD, 8 births)
+
+- **Peak NICU month (2024)**:  
+  July 2024 – 50% NICU admissions (6 of 12 births)
+
+- **Ward staffing shock explicitly noted in dataset**:  
+  December 2025 – “Maternity ward 3 midwives down – high agency usage”
+
+---
+
+## Interpretation: What Actually Changed
+
+### Intrapartum Workforce Sensitivity
+A critical operational mechanism underlying the observed trends is **who is providing intrapartum care and under what conditions**.
+
+- During the early phase, NOH relied on **independent/private midwives** for intrapartum care when ward capacity was constrained.
+- The mature operational model later relied primarily on **hospital ward midwives for intrapartum care**.
+
+This transition did not merely change “who delivered babies”; it changed:
+- Confidence levels in managing labour
+- Escalation thresholds
+- Motivation and ownership for NOH patients
+- Reliance on defensive practice under pressure
+
+The data suggests that **outcomes are highly sensitive to ward‑level intrapartum conditions**, not just NOH programme design.
+
+---
+
+## Core Insight (Governance-Level)
+**Outcome improvement cannot be achieved by NOH team‑level interventions alone.**
+
+The dominant levers sit at **ward level**, including:
+- Staffing stability (avoiding chronic understaffing and agency reliance)
+- Capability and confidence in midwife‑led labour
+- Clear, reinforced escalation culture
+- Reliable obstetric backup responsiveness
+- Joint ownership of outcomes between NOH and ward teams
+
+This insight is consistent with later governance actions focused on:
+- Ward‑based training
+- Escalation clarity (“call early, call often”)
+- Joint SOPs and MDT reinforcement
+
+---
+
+## How This Should Appear on the Dashboard
+
+### Suggested Vertical Markers
+- **Mar 2024**  
+  “Sustained CS elevation begins (rolling 3‑month average ≥60%)”
+
+- **Context marker (mid‑chart)**  
+  “Intrapartum workforce transition: private/independent midwives → hospital ward midwives”
+
+- **Dec 2025**  
+  “Ward staffing shock: midwives down, high agency usage”
+
+---
+
+## Paste‑Ready Narrative (Short Version)
+
+> Monthly CS% and NICU% are derived from the NOH clinical outcomes dataset, with 3‑month rolling averages applied to reduce volatility from small monthly volumes. The data shows a clear step‑change from early programme performance into a persistently higher caesarean and NICU environment by 2024, with sustained CS elevation beginning in March 2024.  
+>  
+> Interpretation of this trend requires attention to intrapartum workforce conditions. Early programme phases relied on independent/private midwives for intrapartum support due to ward capacity constraints, while later phases depended on hospital ward midwives for intrapartum care. This transition increased sensitivity of outcomes to ward‑level staffing stability, confidence, and escalation culture.  
+>  
+> The key operational lesson is that improving outcomes requires ward‑level change management — including staffing continuity, capability development, and clear escalation expectations — rather than NOH team‑level interventions alone.
+
+---
+
+## Intended Use
+- Streamlit dashboards
+- Power BI narrative panels
+- Funder submissions
+- Board or investment committee packs
+- Clinical governance documentation
+
+This file is intended to be the **single source of truth** for narrative alignment across all of the above.
