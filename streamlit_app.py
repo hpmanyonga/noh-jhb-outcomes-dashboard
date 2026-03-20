@@ -7,9 +7,23 @@ st.set_page_config(page_title="NOH JHB Maternity Outcomes", layout="wide")
 st.title("NOH Johannesburg Maternity Outcomes")
 st.caption("De identified monthly outcomes reported by baby date of birth")
 
+from supabase import create_client
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/jhb_outcomes_monthly.csv")
+    supabase = create_client(
+        st.secrets["SUPABASE_URL"],
+        st.secrets["SUPABASE_SERVICE_KEY"]
+    )
+
+    response = (
+        supabase
+        .table("jhb_outcomes_monthly")
+        .select("*")
+        .order("month")
+        .execute()
+    )
+
+    df = pd.DataFrame(response.data)
     df["month"] = pd.to_datetime(df["month"])
     return df
 
